@@ -10,7 +10,7 @@
 - **Configurable**: Configuration can be set through a configuration file or default values.
 - **Endpoints**:
   - `POST /create`: Create a new person with a name and age.
-  - `GET /search`: Search for a person by name and age.
+  - `GET /search`: Search for a person by name.
 
 ## Requirements
 
