@@ -18,6 +18,32 @@ void Request::parse(std::string request, Config config)
     std::istringstream requestLine(line);
     requestLine >> method >> path;
 
+    if (method == "OPTIONS")
+        return;
+    if (method == "GET" && path.find('?') != std::string::npos && path.find('=') != std::string::npos)
+    {
+        try 
+        {
+            size_t namePos = path.find("name=");
+            if (namePos != std::string::npos) 
+            {
+                std::string name = path.substr(namePos + 5);
+                size_t ampersandPos = name.find('&');
+                if (ampersandPos != std::string::npos) 
+                    name = name.substr(0, ampersandPos);
+                _jsonfield["name"] = name;
+                status = 1;
+                path = path.substr(0, path.find('?'));
+                return;
+            }
+        } 
+        catch (const std::exception& e) 
+        {
+            status = 0;
+            path = path.substr(0, path.find('?'));
+            return;
+        }
+    }
     while (std::getline(stream, line) && !line.empty()) {
         auto delimiterPos = line.find(':');
         if (delimiterPos == std::string::npos)
@@ -70,8 +96,7 @@ void Request::parse(std::string request, Config config)
         }
     }
 
-    if (_jsonfield.find("name") == _jsonfield.end() || 
-        (path == config.getCreateRoute() && _jsonfield.find("age") == _jsonfield.end()))
+    if (_jsonfield.find("name") == _jsonfield.end() || _jsonfield.find("age") == _jsonfield.end())
     {
         status = 0;
         return;
@@ -79,19 +104,9 @@ void Request::parse(std::string request, Config config)
 
     if (config.getEnforceJSONFormat())
     {
-        if (path == config.getCreateRoute())
-        {
-            if (_jsonfield.size() != 2) {
-                status = 0;
-                return;
-            }
-        }
-        if (path == config.getSearchRoute())
-        {
-            if (_jsonfield.size() != 1) {
-                status = 0;
-                return;
-            }
+        if (_jsonfield.size() != 2) {
+            status = 0;
+            return;
         }
     }
     status = 1;

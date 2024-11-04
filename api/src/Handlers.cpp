@@ -20,7 +20,7 @@ Response Handlers::createPersonHandler(Request request, DataStore &store, Config
     {
         response.setStatusCode(400);
         response.setHeader("Content-Type", "application/json");
-        response.setBody("{\"error\": \"Invalid age\"}, \"message\": \"User too young.\"");
+        response.setBody("{\"error\": \"Invalid age\", \"message\": \"User too young.\"}");
         return response;
     }
 

@@ -139,11 +139,16 @@ int Server::_init()
 
     return serverSocket;
 }
-
+#include <iostream>
 void Server::routeRequest(Request request, int fd)
 {
     Response response;
-    if (request.getStatus() == 1)
+
+	if (request.getMethod() == "OPTIONS")
+	{
+		response.setStatusCode(200);
+	}
+    else if (request.getStatus() == 1)
     {
         std::string method = request.getMethod();
         std::string path = request.getPath();

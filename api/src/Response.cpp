@@ -35,6 +35,9 @@ std::string Response::getResponse()
 {
     std::string response = "HTTP/1.1 " + std::to_string(statusCode) + "\r\n";
     response += headers;
+    response += "Access-Control-Allow-Origin: *\r\n";
+    response += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n";
+    response += "Access-Control-Allow-Headers: Content-Type\r\n";
     response += "\r\n";
     response += body;
     return response;
