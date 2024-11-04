@@ -39,8 +39,8 @@
 
 The server can be configured using a configuration file. The configuration file should be in the following format:
 ```conf
-SQLPass=password
 SQLFile=data.db
+SQLPass=password
 CreateRoute=/create
 SearchRoute=/search
 MaxAgeEnabled=false
@@ -49,6 +49,15 @@ Port=8080
 MaxAge=100
 ```
 Any values that are not in the config file will be set to the server defaults (The same values as in the example.)
+
+- SQLFile: The name of the SQLite database file.
+- SQLPass: The password used to encrypt the SQLite database.
+- CreateRoute: The URL path for the endpoint to create a new person.
+- SearchRoute: The URL path for the endpoint to search for a person.
+- MaxAgeEnabled: A boolean value indicating whether the max age feature is enabled.
+- EnforceJSONFormat: A boolean value indicating whether to enforce that the JSON field only holds the requested data.
+- Port: The port number on which the server will listen for incoming requests.
+- MaxAge: The maximum age value used if the max age feature is enabled.
 
 ## Usage
 
