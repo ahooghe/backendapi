@@ -50,6 +50,8 @@ MaxAge=100
 ```
 Any values that are not in the config file will be set to the server defaults (The same values as in the example.)
 
+### Configurable Options
+
 - SQLFile: The name of the SQLite database file.
 - SQLPass: The password used to encrypt the SQLite database.
 - CreateRoute: The URL path for the endpoint to create a new person.

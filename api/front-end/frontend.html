@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person API Front-End</title>
+    <link rel="stylesheet" href="styles-frontend.css">
+</head>
+<body>
+    <h1>Person API Front-End</h1>
+
+    <section>
+        <h2>Create Person</h2>
+        <form id="createPersonForm">
+            <label for="createName">Name:</label>
+            <input type="text" id="createName" name="name" required>
+            <label for="createAge">Age:</label>
+            <input type="number" id="createAge" name="age" required>
+            <button type="submit">Create</button>
+        </form>
+        <div id="createPersonResult"></div>
+    </section>
+
+    <section>
+        <h2>Search Person</h2>
+        <form id="searchPersonForm">
+            <label for="searchName">Name:</label>
+            <input type="text" id="searchName" name="name" required>
+            <label for="searchAge">Age:</label>
+            <input type="number" id="searchAge" name="age" required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="searchPersonResult"></div>
+    </section>
+
+    <script src="scripts-frontend.js"></script>
+</body>
+</html>

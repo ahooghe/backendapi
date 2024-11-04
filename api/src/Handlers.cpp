@@ -47,7 +47,7 @@ Response Handlers::createPersonHandler(Request request, DataStore &store, Config
 
     store.addPerson(name, age);
 
-    response.setStatusCode(200);
+    response.setStatusCode(201);
     response.setHeader("Content-Type", "application/json");
     response.setBody("{\"message\": \"Person created.\"}");
     return response;

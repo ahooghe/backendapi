@@ -16,7 +16,7 @@ Config::Config()
 Config::~Config()
 {
 }
-#include <iostream>
+
 void Config::parseFile(std::string file)
 {
     std::ifstream configFile(file);

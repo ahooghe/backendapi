@@ -1,5 +1,4 @@
 #include "../inc/Server.hpp"
-#include <iostream>
 
 Server::Server(Config config): conf(config)
 {
@@ -152,7 +151,6 @@ void Server::routeRequest(Request request, int fd)
         std::string method = request.getMethod();
         std::string path = request.getPath();
 
-		std::cout << method << path << std::endl;
         auto handler = router.getHandler(method, path);
         if (handler)
             response = handler(request, data);

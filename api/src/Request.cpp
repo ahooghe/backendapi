@@ -8,7 +8,7 @@ Request::Request(std::string request, Config config)
 Request::~Request()
 {
 }
-#include <iostream>
+
 void Request::parse(std::string request, Config config)
 {
     std::istringstream stream(request);
@@ -39,7 +39,6 @@ void Request::parse(std::string request, Config config)
     body = body.substr(body.find_first_of('{') + 1);
     body = body.substr(0, body.find_last_of('}'));
 
-    std::cout << body << std::endl;
 
     bool comma = false;
     for (int i = 0; i < body.length(); i++)
