@@ -45,10 +45,7 @@ void Server::start(int port)
                     socklen_t socklen = sizeof(this->sockaddr);
                     int clientfd = accept(i, (struct sockaddr *)&this->sockaddr, &socklen);
                     if (clientfd < 0)
-                    {
-                        std::cerr << "Accept error: " << strerror(errno) << std::endl;
                         continue;
-                    }
 
                     FD_SET(clientfd, &current);
                 }
