@@ -158,16 +158,16 @@ void Server::routeRequest(Request request, int fd)
             response = handler(request, data);
         else
         {
-            response.setStatusCode(404);
+            response.setStatusCode(405);
             response.setHeader("Content-Type", "application/json");
-            response.setBody("{\"error\": \"Not Found\", \"message\": \"The HTTP method or URI path is incorrect.\"}");
+            response.setBody("{\"error\": \"Method Not Allowed\", \"message\": \"The HTTP method or URI path is incorrect.\"}");
         }
     }
     else
     {
-        response.setStatusCode(404);
+        response.setStatusCode(400);
         response.setHeader("Content-Type", "application/json");
-        response.setBody("{\"error\": \"Not Found\", \"message\": \"The HTTP request is invalid.\"}");
+        response.setBody("{\"error\": \"Bad Request\", \"message\": \"The HTTP request is invalid.\"}");
     }
     send(fd, response.getResponse().c_str(), response.getResponse().size(), 0);
 }

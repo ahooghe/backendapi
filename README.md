@@ -20,63 +20,87 @@
 - **Method**: `POST`
 - **Content-Type**: `application/json`
 - **Request Body**:
-  ```json
-  {
-    "name": "string",
-    "age": integer
-  }
+    ```json
+    {
+        "name": "string",
+        "age": integer
+    }
+    ```
 
 - **Success Response**:
- - **Code**: `201 Created`
- - **Content**:
- ```json
- {
-    "message": "Person created.",
-    "name": "string",
-    "age": integer
- }
- ```
+  - **Code**: `201 Created`
+  - **Content**:
+    ```json
+    {
+        "message": "Person created.",
+        "name": "string",
+        "age": integer
+    }
+    ```
 
 - **Error Responses**:
- - **Code**: `400`
- - **Content**:
-  - **Case**: Underage
-  ```json
-  {
-    "error": "User too young."
-  }
-  ```
-  - **Case**: Overage
-  ```json
-  {
-    "error": "User too old."
-  }
- ```
+  - **Code**: `400 Bad Request`
+  - **Case**: Underaged
+  - **Content**:
+    ```json
+    {
+        "error": "User too young."
+    }
+    ```
+  - **Code**: `400 Bad Request`
+  - **Case**: Overaged
+  - **Content**:
+    ```json
+    {
+        "error": "User too old."
+    }
+    ```
 
 ### Search Person
 
 - **URL**: `/search`
 - **Method**: `GET`
 - **Query Parameters**: 
- - `name`: The name of the person to search for.
+  - `name`: The name of the person to search for.
 
 - **Success Response**:
- - **Code**: `200 OK`
- ```json
- {
-    "name": "string",
-    "age": integer
- }
- ```
+  - **Code**: `200 OK`
+    ```json
+    {
+        "name": "string",
+        "age": integer
+    }
+    ```
 
 - **Error Responses**:
- - **Code**: `404 Not Found`
- - **Content**: 
- ```json
- {
-    "error": "Person not found"
- }
- ```
+  - **Code**: `404 Not Found`
+  - **Content**: 
+    ```json
+    {
+        "error": "Person not found"
+    }
+    ```
+
+### **Invalid Inputs**:
+- **Wrong method or uri**:
+  - **Code**: `405 Method Not Allowed`
+  - **Content**:
+     ```json
+    {
+        "error": "Method Not Allowed",
+        "message": "The HTTP method or URI path is incorrect."
+    }
+     ```
+
+- **Invalid Request**:
+  - **Code**: `400 Bad Request`
+  - **Content**:
+    ```json
+    {
+        "error": "Bad Request",
+        "message": "The HTTP request is invalid."
+    }
+    ```
 
 ## Requirements
 
