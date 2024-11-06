@@ -79,10 +79,63 @@ You can now send requests to the server.
     - A GET request can be used to search for a person with the correct uri.
         ex. using curl:
         ```sh
-        curl -X GET http://localhost:8080/search -H "Content-Type: application/json" -d '{"name":"Anthony"}'
+        curl -X GET http://localhost:8080/search?name=Anthony
         ```
 
+3. **Use Front-End Webapp**:
+You can use the API with the front-end webapp located in `api/front-end/`. To launch the front-end webapp, you'll need to run a local webserver. 
+The suggested solution is using a simple python3 command to run it, but this is not mandatory. If you wish to use python3, run this command inside the front-end directory.
+    ```sh
+    python3 -m http.server 3000
+    ```
+    After starting the local webserver, you can access the front-end webapp by navigating to http://localhost:3000 in your web browser.
+
 Any response will be a HTTP response with a JSON field in the body. 
+
+## Testing
+
+To ensure the API is working correctly, you can run a series of automated tests using the provided `test.sh` script. This script will prompt you for the create path, search path, and port, and then execute a series of curl commands to test the API.
+
+### Running the Tests
+
+1. **Launch the API Server**:
+    ```sh
+    make
+    ./backendapi <path/to/config/file>
+    ```
+
+2. **Make the Script Executable**:
+    ```sh
+    chmod +x test.sh
+    ```
+
+3. **Run the Script**:
+    ```sh
+    ./test.sh
+    ```
+
+4. **Follow the Prompts**: The script will ask for the create path, search path, and port. Enter the appropriate values.
+
+5. **Reset the Database**: If the test is run multiple times, remember to reset the database by running:
+    ```sh
+    make resetdb
+    ```
+    If this is not done, the create test will fail in subsequent runs.
+
+### Test Cases
+
+The script will run the following test cases:
+
+- **Create Person (POST)**: Tests creating a person with a POST request.
+- **Create Duplicate Person (POST)**: Tests creating the same person again (should fail).
+- **Create Person with GET**: Tests creating a person with a GET request (should fail).
+- **Create Person with PUT**: Tests creating a person with a PUT request (should fail).
+- **Search Person (GET)**: Tests searching for a person with a GET request.
+- **Search Non-Existent Person (GET)**: Tests searching for a non-existent person (should fail).
+- **Search Person with POST**: Tests searching for a person with a POST request (should fail).
+- **Search Person with PUT**: Tests searching for a person with a PUT request (should fail).
+
+The results of the tests will be displayed in the terminal, with successful tests shown in green and failed tests shown in red. Each test result will include the input data and the response from the server.
 
 ## Code Structure
 
@@ -109,7 +162,7 @@ Any response will be a HTTP response with a JSON field in the body.
 - Makefile: The makefile to build the project.
 
 ## License
-There is no license. This code was written for a job interview. It is complelely open source and you have my full permission to use any part of it as you like.
+There is no license. This code was written for a job interview. It is completely open source and you have my full permission to use any part of it as you like.
 
 ## Contact
 For any questions or inquiries, please contact [anthonyhooghe@gmail.com].
