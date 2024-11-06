@@ -52,12 +52,6 @@
     "error": "User too old."
   }
  ```
-  - **Case**: 
-  ```json
-  {
-    "error": "User too young."
-  }
-  ```
 
 ### Search Person
 
