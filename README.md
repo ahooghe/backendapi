@@ -65,6 +65,7 @@
 
 - **Success Response**:
   - **Code**: `200 OK`
+  - **Content**: 
     ```json
     {
         "name": "string",
