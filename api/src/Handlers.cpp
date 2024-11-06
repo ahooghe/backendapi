@@ -39,7 +39,7 @@ Response Handlers::createPersonHandler(Request request, DataStore &store, Config
 
     if (!store.searchPerson(name).toJson().empty())
     {
-        response.setStatusCode(400);
+        response.setStatusCode(409);
         response.setHeader("Content-Type", "application/json");
         response.setBody("{\"error\": \"Someone with this name already exists\"}");
         return response;

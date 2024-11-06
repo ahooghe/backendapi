@@ -12,6 +12,78 @@
   - `POST /create`: Create a new person with a name and age.
   - `GET /search`: Search for a person by name.
 
+## API Documentation
+
+### Create Person
+
+- **URL**: `/create`
+- **Method**: `POST`
+- **Content-Type**: `application/json`
+- **Request Body**:
+  ```json
+  {
+    "name": "string",
+    "age": integer
+  }
+
+- **Success Response**:
+ - **Code**: `201 Created`
+ - **Content**:
+ ```json
+ {
+    "message": "Person created.",
+    "name": "string",
+    "age": integer
+ }
+ ```
+
+- **Error Responses**:
+ - **Code**: `400`
+ - **Content**:
+  - **Case**: Underage
+  ```json
+  {
+    "error": "User too young."
+  }
+  ```
+  - **Case**: Overage
+  ```json
+  {
+    "error": "User too old."
+  }
+ ```
+  - **Case**: 
+  ```json
+  {
+    "error": "User too young."
+  }
+  ```
+
+### Search Person
+
+- **URL**: `/search`
+- **Method**: `GET`
+- **Query Parameters**: 
+ - `name`: The name of the person to search for.
+
+- **Success Response**:
+ - **Code**: `200 OK`
+ ```json
+ {
+    "name": "string",
+    "age": integer
+ }
+ ```
+
+- **Error Responses**:
+ - **Code**: `404 Not Found`
+ - **Content**: 
+ ```json
+ {
+    "error": "Person not found"
+ }
+ ```
+
 ## Requirements
 
 - C++17
